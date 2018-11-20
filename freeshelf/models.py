@@ -6,5 +6,5 @@ class Book(models.Model):
     author = models.CharField(max_length=255)
     description = models.TextField()
     date_added = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=False)
     image = models.ImageField(default='default.png', blank=True)
