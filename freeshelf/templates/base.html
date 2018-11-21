@@ -11,26 +11,38 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     {% block header %}{% endblock header %}
 </head>
-<body>
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
-    <a class="item" href="{% url 'home' %}">Home</a>
-    <a class="item">Browse</a>
-    <div class="right menu">
-        <div class="item">
-            <a class="ui button">Log Out</a>
-            <a class="ui button">Log In</a>
+    <a class="item" href="/">Home</a>
+    <a class="item">Blank</a>
+    <div class="ui simple dropdown item">
+        Browse <i class="dropdown icon"></i>
+        <div class="menu">
+          <a class="item" href="#">View All</a>
+          <a class="item" href="#">Perl</a>
+          <a class="item" href="#">Python</a>
+          <a class="item" href="#">R</a>
         </div>
+    </div>
+    <div class="right menu">
+      <div class="item">
+        <a class="ui button" href="#">Log In</a>
+      </div>
+      <div class="item">
+        <a class="ui primary button" href="#">Sign Up</a>
+      </div>
     </div>
   </div>
 </div>
-    <header>
-        <center>
+<body>
+    <center>
+        <header>
             <br>
-            <h1>Freeshelf Web App</h1>
-        </center>
-    </header>
-    {% block content %}{% endblock content %}
-    {% block footer %}{% endblock footer %}
+                <h1>Freeshelf Web App</h1>
+            <br>
+        </header>
+        {% block content %}{% endblock content %}
+        {% block footer %}{% endblock footer %}
+    </center>
 </body>
 </html>

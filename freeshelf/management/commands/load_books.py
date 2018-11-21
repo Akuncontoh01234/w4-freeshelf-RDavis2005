@@ -24,7 +24,8 @@ class Command(BaseCommand):
                 book = Book(
                     title=row['title'],
                     author=row['author'],
-                    description=row['description']
+                    description=row['description'],
+                    slug=row['slug']
                 )
                 book.save()
         print("Books loaded successfully!")

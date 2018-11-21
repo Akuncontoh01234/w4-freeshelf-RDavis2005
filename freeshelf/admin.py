@@ -1,6 +1,13 @@
 from django.contrib import admin
 # Import models here
-from freeshelf.models import Book
+from freeshelf.models import Book, Category
+
+#Adds Category to Admin
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'slug')
+    prepopulated_fields = {'slug': ('name',)}
+
+admin.site.register(Category, CategoryAdmin)
 
 #Makes automatic slug creation
 class BookAdmin(admin.ModelAdmin):
