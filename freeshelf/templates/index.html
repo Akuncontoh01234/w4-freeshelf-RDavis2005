@@ -5,10 +5,12 @@
 
 {% block content %}
     {% for book in books %}
-    <img src="{{ book.image.url }}" height=225 width=150/>
-    <h2>{{ book.title }}</h2>
-    <p>{{ book.author }}</p>
-    <p>{{ book.description }}</p>
-    <p>{{ book.date_added }}</p>
+        <img src="{{ book.image.url }}" height=225 width=150/>
+        <h2><a href="{% url 'book_detail' slug=book.slug %}">
+            {{ book.title }} 
+        </a></h2>
+        <p>{{ book.author }}</p>
+        <p>{{ book.description }}</p>
+        <p>Category: <a href="/category/{{ book.category.slug }}">{{ book.category.name }}</a></p>
     {% endfor %}
 {% endblock content %}

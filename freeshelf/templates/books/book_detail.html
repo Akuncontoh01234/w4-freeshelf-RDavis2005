@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ book.title }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <img src="{{ book.image.url }}" height=225 width=150 align=left />
+    <h1>{{ book.title }}</h1>
+    <p>{{ book.author }}</p>
+    <p>{{ book.description }}</p>
+{% endblock content %}

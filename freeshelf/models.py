@@ -15,8 +15,9 @@ class Category(models.Model):
 
 #Book
 class Book(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+    category = models.ForeignKey(to='Category', on_delete=models.CASCADE,
         default=Category.objects.get(name='general'))
+        
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     description = models.TextField()
