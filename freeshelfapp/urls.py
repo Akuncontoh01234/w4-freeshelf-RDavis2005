@@ -14,18 +14,40 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from freeshelf import views
 from django.conf.urls.static import static
 from django.conf import settings
+#from freeshelf.backends import MyRegistrationView
+from django.contrib.auth.views import ( 
+    PasswordResetView,
+    PasswordResetDoneView, 
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
+) 
 
 urlpatterns = [
     path('', views.index, name='home'),
-    path('admin/', admin.site.urls),
     path('books/<slug>/', views.book_detail,
         name='book_detail'),
     path('category/<slug>/', views.category, 
        name='category'),
-]
 
+    path('accounts/password/reset/', PasswordResetView.as_view(
+        template_name='registration/password_reset_form.html'), 
+        name="password_reset"),
+    path('accounts/password/reset/done/', PasswordResetDoneView.as_view(
+        template_name='registration/password_reset_done.html'), 
+        name="password_reset_done"),
+    path('accounts/password/reset/<uidb64>/<token>/',
+        PasswordResetConfirmView.as_view(
+        template_name='registration/password_reset_confirm.html'), 
+        name="password_reset_confirm"),
+    path('accounts/password/done/', PasswordResetCompleteView.as_view(
+        template_name='registration/password_reset_complete.html'),
+        name="password_reset_complete"),
+    path('accounts/', include('registration.backends.simple.urls')),
+	path('admin/', admin.site.urls), 
+    #path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

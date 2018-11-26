@@ -11,30 +11,33 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     {% block header %}{% endblock header %}
 </head>
+<body>
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
-    <a class="item" href="/">Home</a>
-    <a class="item">Blank</a>
+    <a class="item" href="{% url 'home' %}">Home</a>
     <div class="ui simple dropdown item">
         Browse <i class="dropdown icon"></i>
         <div class="menu">
-          <a class="item" href="#">View All</a>
-          <a class="item" href="#">Perl</a>
-          <a class="item" href="#">Python</a>
-          <a class="item" href="#">R</a>
+          <a class="item" href="/">View All</a>
+          <a class="item" href="/category/perl">Perl</a>
+          <a class="item" href="/category/python">Python</a>
+          <a class="item" href="/category/r">R</a>
         </div>
     </div>
     <div class="right menu">
       <div class="item">
-        <a class="ui button" href="#">Log In</a>
+        {% if user.is_authenticated %}
+        <a class="ui button" href="{% url 'auth_logout' %}">Log Out</a>
+        {% else %}
+        <a class="ui button" href="{% url 'auth_login' %}">Log In</a>
       </div>
       <div class="item">
-        <a class="ui primary button" href="#">Sign Up</a>
+        <a class="ui primary button" href="{% url 'registration_register' %}">Sign Up</a>
+        {% endif %}
       </div>
     </div>
   </div>
 </div>
-<body>
     <center>
         <header>
             <br>
